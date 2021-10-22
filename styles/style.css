@@ -3,6 +3,7 @@
 :root {
     --background: #00c3ff;
     --foreground: #d2f0ab;
+    --text: #ffffff;
 }
 
 html, body {
@@ -28,8 +29,14 @@ html, body {
     padding: 5px;
     font-size: 64px;
     font-weight: 700;
-    color: white;
+    color: var(--text);
     text-shadow: 3px 3px 3px black;
+}
+
+#footer {
+    color: var(--text);
+    text-shadow: 2px 2px 2px black;
+    margin-top: 20px;
 }
 
 #menu {
@@ -53,8 +60,12 @@ html, body {
 }
 
 .menu-item:hover {
-    color: white;
+    color: var(--text);
     text-shadow: 0 0 2px black;
+}
+
+.menu-item:active {
+    color: var(--background);
 }
 
 #game {
@@ -73,16 +84,17 @@ html, body {
     width: 400px;
     height: 400px;
     margin: 15px;
-    padding: 5px;
+    padding: 4px;
     border-radius: 5px;
     box-shadow: 0 0 4px 1px black;
     cursor: pointer;
 }
 
 .square {
-    background-color: #a6c8df;
+    background-color: #afffff;
     width: 35px;
     height: 35px;
     margin: 1px;
-    border-radius: 3px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px black;
 }

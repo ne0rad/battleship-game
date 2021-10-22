@@ -1,5 +1,9 @@
 {
+  "name": "battleship-game",
   "dependencies": {
     "jest": "^27.3.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

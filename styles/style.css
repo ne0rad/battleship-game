@@ -104,6 +104,10 @@ html, body {
 }
 
 .hit {
+    background-color: #ffd3af;
+}
+
+.destroyed {
     background-color: #ffafaf;
 }
 

@@ -12,13 +12,17 @@ renderShip.setShip(1, 2, 6);
 renderShip.setShip(1, 2, 7);
 renderShip.setShip(1, 2, 8);
 
-
 renderShip.setHit(1, 2, 1);
 renderShip.setHit(1, 3, 1);
 renderShip.setHit(1, 4, 1);
 
+renderShip.setMiss(1, 1, 1);
 renderShip.setMiss(1, 7, 3);
 renderShip.setMiss(1, 7, 4);
 renderShip.setMiss(1, 7, 5);
 renderShip.setMiss(1, 7, 6);
 renderShip.setMiss(1, 6, 6);
+
+renderShip.setDestroyed(1, 6, 3);
+renderShip.setDestroyed(1, 6, 4);
+renderShip.setDestroyed(1, 6, 5);

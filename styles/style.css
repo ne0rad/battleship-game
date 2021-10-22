@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+:root {
+    --background: #00c3ff;
+    --foreground: #d2f0ab;
+}
+
+html, body {
+    font-family: 'Black Ops One', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+}
+
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    user-select: none;
+    min-width: 440px;
+    margin-top: 5px;
+}
+
+#title {
+    font-family: 'Black Ops One', cursive;
+    text-align: center;
+    padding: 5px;
+    font-size: 64px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 3px 3px 3px black;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 400px;
+    margin: 15px;
+    padding: 5px;
+    background-color: var(--foreground);
+    border-radius: 5px;
+    box-shadow: 0 0 4px 1px black;
+}
+
+.menu-item {
+    font-weight: 200;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.menu-item:hover {
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+
+#game {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.board {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: var(--foreground);
+    width: 400px;
+    height: 400px;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 1px black;
+    cursor: pointer;
+}
+
+.square {
+    background-color: #a6c8df;
+    width: 35px;
+    height: 35px;
+    margin: 1px;
+    border-radius: 3px;
+}

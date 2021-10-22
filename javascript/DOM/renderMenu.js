@@ -11,6 +11,8 @@ function renderMenu() {
 
     renderGameDiv();
 
+    renderFooter();
+
     function renderContentDiv() {
         let content = document.createElement('div');
         content.id = 'content';
@@ -41,6 +43,13 @@ function renderMenu() {
         let game = document.createElement('div');
         game.id = 'game';
         content.appendChild(game);
+    }
+
+    function renderFooter() {
+        let footer = document.createElement('div');
+        footer.id = 'footer';
+        footer.textContent = 'Made by ne0rad';
+        content.appendChild(footer);
     }
 }
 

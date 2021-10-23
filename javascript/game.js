@@ -1,6 +1,7 @@
 import { renderMenu } from "./DOM/renderMenu.js";
 import { renderBoard } from './DOM/renderBoard.js';
 import { renderShip } from './DOM/renderShip.js';
+import { ship } from './factories/ship.js';
 
 
 renderMenu();

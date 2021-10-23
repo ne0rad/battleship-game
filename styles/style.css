@@ -1,117 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 
 :root {
-    --background: #00c3ff;
-    --foreground: #d2f0ab;
-    --text: #ffffff;
+  --background: #00c3ff;
+  --foreground: #d2f0ab;
+  --text: #ffffff;
 }
 
-html, body {
-    font-family: 'Black Ops One', cursive;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background);
+html,
+body {
+  font-family: "Black Ops One", cursive;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
 }
 
 #content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    user-select: none;
-    min-width: 440px;
-    margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  user-select: none;
+  min-width: 440px;
+  margin-top: 5px;
 }
 
 #title {
-    font-family: 'Black Ops One', cursive;
-    text-align: center;
-    padding: 5px;
-    font-size: 64px;
-    font-weight: 700;
-    color: var(--text);
-    text-shadow: 3px 3px 3px black;
+  font-family: "Black Ops One", cursive;
+  text-align: center;
+  padding: 5px;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--text);
+  text-shadow: 3px 3px 3px black;
 }
 
 #footer {
-    color: var(--text);
-    text-shadow: 2px 2px 2px black;
-    margin-top: 20px;
+  color: var(--text);
+  text-shadow: 2px 2px 2px black;
+  margin-top: 20px;
 }
 
 #menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 400px;
-    margin: 15px;
-    padding: 5px;
-    background-color: var(--foreground);
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px 0 black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 400px;
+  margin: 15px;
+  padding: 5px;
+  background-color: var(--foreground);
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 black;
 }
 
 .menu-item {
-    font-weight: 200;
-    font-size: 20px;
-    margin: 5px;
-    cursor: pointer;
-    transition: all 0.2s;
+  font-weight: 200;
+  font-size: 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .menu-item:hover {
-    color: var(--text);
-    text-shadow: 0 0 2px black;
+  color: var(--text);
+  text-shadow: 0 0 2px black;
 }
 
 .menu-item:active {
-    color: var(--background);
+  color: var(--background);
 }
 
 #game {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .board {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    background-color: var(--foreground);
-    width: 400px;
-    height: 400px;
-    margin: 15px;
-    padding: 4px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px 0 black;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: var(--foreground);
+  width: 400px;
+  height: 400px;
+  margin: 15px;
+  padding: 4px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 black;
 }
 
 .square {
-    background-color: #afffff;
-    width: 35px;
-    height: 35px;
-    margin: 1px;
-    border-radius: 2px;
-    box-shadow: 0 0 0 1px black;
+  background-color: #afffff;
+  width: 35px;
+  height: 35px;
+  margin: 1px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px black;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  background-color: #6abdbd;
 }
 
 .ship {
-    background-color: #707070;
+  background-color: #707070;
 }
 
 .hit {
-    background-color: #ffd3af;
+  background-color: #ffd3af;
 }
 
 .destroyed {
-    background-color: #ffafaf;
+  background-color: #ffafaf;
 }
 
 .miss {
-    background-color: var(--foreground);
-    box-shadow: none;
+  background-color: var(--foreground);
+  box-shadow: none;
 }

@@ -1,29 +1,39 @@
 import { renderMenu } from "./DOM/renderMenu.js";
-import { renderBoard } from './DOM/renderBoard.js';
-import { renderShip } from './DOM/renderShip.js';
-import { ship } from './factories/ship.js';
-
+import { player } from './factories/player.js';
 
 renderMenu();
-renderBoard(1); // playerID = 1
-renderBoard(2); // playerID = 2
 
-renderShip.setShip(1, 2, 5);
-renderShip.setShip(1, 2, 6);
-renderShip.setShip(1, 2, 7);
-renderShip.setShip(1, 2, 8);
+let shipsOne = [
+    {
+        x: 1,
+        y: 1,
+        shipLength: 3,
+        isVertical: false
+    },
+    {
+        x: 5,
+        y: 4,
+        shipLength: 4,
+        isVertical: true
+    }
+];
 
-renderShip.setHit(1, 2, 1);
-renderShip.setHit(1, 3, 1);
-renderShip.setHit(1, 4, 1);
+let shipsTwo = [
+    {
+        x: 3,
+        y: 3,
+        shipLength: 3,
+        isVertical: false
+    },
+    {
+        x: 3,
+        y: 6,
+        shipLength: 4,
+        isVertical: true
+    }
+];
 
-renderShip.setMiss(1, 1, 1);
-renderShip.setMiss(1, 7, 3);
-renderShip.setMiss(1, 7, 4);
-renderShip.setMiss(1, 7, 5);
-renderShip.setMiss(1, 7, 6);
-renderShip.setMiss(1, 6, 6);
+let playerOne = player(1, shipsOne);
+let playerTwo = player(2, shipsTwo);
 
-renderShip.setDestroyed(1, 6, 3);
-renderShip.setDestroyed(1, 6, 4);
-renderShip.setDestroyed(1, 6, 5);
+

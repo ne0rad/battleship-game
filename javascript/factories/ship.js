@@ -7,7 +7,7 @@ function ship(playerID, x, y, length, isVertical) {
 
     function placeShip() {
         for (let i = 0; i < length; i++) {
-            if (isVertical) {
+            if (!isVertical) {
                 renderShip.setShip(playerID, x + i, y);
                 loc.push([x + i, y]);
             }
@@ -35,11 +35,7 @@ function ship(playerID, x, y, length, isVertical) {
         });
     }
 
-    function getLoc() {
-        return loc;
-    }
-
-    return { getLoc, hit }
+    return { hit }
 }
 
 export { ship }

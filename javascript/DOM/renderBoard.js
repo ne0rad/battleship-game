@@ -19,10 +19,6 @@ function renderBoard(playerID) {
             for (let j = 1; j <= 10; j++) {
                 let square = document.createElement('div');
                 square.classList.add('square');
-                if (playerID === 2) {
-                    square.classList.add('clickable');
-                    square.addEventListener('click', () => renderShip.setMiss(playerID, j, i));
-                }
                 square.id = `${playerID}_${j}.${i}`;
                 gameboard.appendChild(square);
             }

@@ -62,7 +62,7 @@ body {
 
 .menu-item:hover {
   color: var(--text);
-  text-shadow: 0 0 2px black;
+  text-shadow: 0 0 4px black;
 }
 
 .menu-item:active {

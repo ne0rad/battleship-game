@@ -1,6 +1,7 @@
 import { renderMenu } from "./DOM/renderMenu.js";
 import { player } from './factories/player.js';
 
+let timeout = false;
 
 let shipsOne = [
     {
@@ -32,15 +33,17 @@ let shipsTwo = [
     }
 ];
 
-function hit(player, x, y) {
-    player = player === 1 ? playerOne : playerTwo;
-    if (!checkHit(player, x, y)) return;
+function hit(x, y) {
+    if (!checkHit(playerTwo, x, y) || timeout) return;
 
-    if (player.hit(x, y)) {
-        // game over
+    if (playerTwo.hit(x, y)) {
         gameover();
     } else {
-        cpuHit();
+        timeout = true;
+        setTimeout(() => {
+            cpuHit();
+            timeout = false;
+        }, 1000)
     }
 }
 
@@ -51,7 +54,7 @@ function cpuHit() {
         availableLoc.push([tempLoc[0], tempLoc[1]]);
     });
     let rand = Math.floor(Math.random() * availableLoc.length);
-    if(playerOne.hit(availableLoc[rand][0], availableLoc[rand][1])) {
+    if (playerOne.hit(availableLoc[rand][0], availableLoc[rand][1])) {
         gameover();
     }
 }
@@ -77,7 +80,7 @@ function addEvents() {
         for (let j = 1; j <= 10; j++) {
             let square = document.getElementById(`2_${j}.${i}`);
             square.classList.add('clickable');
-            square.addEventListener('click', () => hit(2, j, i));
+            square.addEventListener('click', () => hit(j, i));
         }
     }
 }

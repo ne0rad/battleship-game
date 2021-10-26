@@ -1,5 +1,6 @@
 import { renderMenu } from "./DOM/renderMenu.js";
 import { player } from './factories/player.js';
+import { renderAbout } from './DOM/renderAbout.js';
 
 let timeout = false;
 
@@ -90,5 +91,3 @@ renderMenu();
 let playerOne = player(1, shipsOne);
 let playerTwo = player(2, shipsTwo);
 addEvents();
-
-

@@ -19,7 +19,8 @@ function renderRules() {
         '<br>' +
         'When all of the squares that one your ships occupies have been hit, the ship will be sunk.   You should announce "hit and sunk".  In the physical game, a red peg is placed on the top edge of the vertical board to indicate a sunk ship.' +
         '<br>' +
-        "As soon as all of one player's ships have been sunk, the game ends.";
+        "As soon as all of one player's ships have been sunk, the game ends." +
+        '<br><br>';
 
     removePrevious();
     renderRulesDiv();

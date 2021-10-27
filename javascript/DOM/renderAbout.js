@@ -11,7 +11,8 @@ function renderAbout() {
      '<br>' +
      '<a href="https://github.com/ne0rad/battleship-game" target="_blank">Project</a>' +
      '<br>' +
-     '<a href="https://github.com/ne0rad/" target="_blank">Profile (ne0rad)</a>'
+     '<a href="https://github.com/ne0rad/" target="_blank">Profile (ne0rad)</a>' +
+     '<br><br>';
 
     removePrevious();
     renderAboutDiv();

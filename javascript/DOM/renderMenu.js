@@ -34,6 +34,7 @@ function renderMenu() {
 
     function renderMenuItem(name) {
         let menuItem = document.createElement('div');
+        menuItem.id = name;
         menuItem.classList.add('menu-item');
         menuItem.textContent = name;
         menu.appendChild(menuItem);

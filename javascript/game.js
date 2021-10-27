@@ -91,6 +91,8 @@ function addMenuEvents() {
         .addEventListener('click', () => menuSwitch('About'));
     document.getElementById('Rules')
         .addEventListener('click', () => menuSwitch('Rules'));
+    document.getElementById('New Game')
+        .addEventListener('click', () => menuSwitch('New Game'));
 }
 
 renderMenu();

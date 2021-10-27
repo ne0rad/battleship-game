@@ -164,3 +164,25 @@ html,body {
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 black;
 }
+
+.ship-selector {
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  width: 260px;
+  height: 360px;
+}
+
+.ship-wrap {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.ship-selector-horizontal {
+  flex-direction: row;
+}
+
+.ship-selector-ship {
+  margin: 2px;
+}

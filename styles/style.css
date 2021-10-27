@@ -6,8 +6,7 @@
   --text: #ffffff;
 }
 
-html,
-body {
+html,body {
   font-family: "Black Ops One", cursive;
   margin: 0;
   padding: 0;
@@ -21,6 +20,8 @@ body {
   flex-direction: column;
   user-select: none;
   min-width: 440px;
+  margin: 0;
+  padding: 0;
   margin-top: 5px;
 }
 
@@ -124,15 +125,42 @@ body {
 }
 
 .about {
+  font-family: monospace;
+  font-size: 18px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
   background-color: var(--foreground);
-  width: 400px;
-  min-height: 400px;
+  width: 381px;
   margin: 15px;
-  padding: 4px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 black;
+}
+
+.about-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.about-text {
+  text-align: center;
+}
+
+.rules {
+  font-family: monospace;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: var(--foreground);
+  min-width: 381px;
+  width: 80vw;
+  margin: 15px;
+  padding: 15px;
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 black;
 }

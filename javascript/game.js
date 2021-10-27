@@ -1,6 +1,6 @@
 import { renderMenu } from "./DOM/renderMenu.js";
 import { player } from './factories/player.js';
-import { renderAbout } from './DOM/renderAbout.js';
+import { menuSwitch } from './modules/menuSwitch.js';
 
 let timeout = false;
 
@@ -76,7 +76,7 @@ function gameover() {
     playerTwo.toggleClickable();
 }
 
-function addEvents() {
+function addBoardEvents() {
     for (let i = 1; i <= 10; i++) {
         for (let j = 1; j <= 10; j++) {
             let square = document.getElementById(`2_${j}.${i}`);
@@ -86,8 +86,17 @@ function addEvents() {
     }
 }
 
+function addMenuEvents() {
+    document.getElementById('About')
+        .addEventListener('click', () => menuSwitch('About'));
+    document.getElementById('Rules')
+        .addEventListener('click', () => menuSwitch('Rules'));
+}
+
 renderMenu();
 
 let playerOne = player(1, shipsOne);
 let playerTwo = player(2, shipsTwo);
-addEvents();
+addBoardEvents();
+
+addMenuEvents();

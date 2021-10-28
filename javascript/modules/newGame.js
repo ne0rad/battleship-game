@@ -1,9 +1,10 @@
 import { renderNew } from "../DOM/renderNew.js";
+import { game } from "./startGame.js";
 
 function newGame() {
     let occupiedSquares = {};
-    let placedShips = [];
-    let ships = [5, 4, 3, 3, 2];
+    let ships = [];
+    let shipQueue = [5, 4, 3, 3, 2];
     renderNew();
     let shipSelectorDiv = document.getElementById('shipSelector');
     renderTitle('Place the ship on the board');
@@ -84,12 +85,12 @@ function newGame() {
     function nextShip() {
         removeShipRender();
         rotateShip();
-        if(ships.length === 0) {
+        if(shipQueue.length === 0) {
             renderStartGame();
             return;
         }
-        shipLength = ships[0];
-        ships.shift();
+        shipLength = shipQueue[0];
+        shipQueue.shift();
         renderShip();
     }
 
@@ -145,7 +146,7 @@ function newGame() {
     function placeShip(x, y) {
         if (!canBePlaced(x, y)) return;
 
-        placedShips.push({
+        ships.push({
             x: x,
             y: y,
             shipLength: shipLength,
@@ -231,7 +232,7 @@ function newGame() {
     }
 
     function startGame() {
-
+        game(ships);
     }
 
 }

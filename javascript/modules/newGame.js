@@ -218,7 +218,7 @@ function newGame() {
     function renderStartButton() {
         let start = document.createElement('div');
         start.classList.add('start-btn');
-        start.textContent = "Start";
+        start.textContent = "Begin";
         start.addEventListener('click', () => startGame());
         shipSelectorDiv.appendChild(start);
     }

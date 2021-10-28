@@ -3,6 +3,9 @@ import { player } from '../factories/player.js';
 function game(ships) {
     removePrevious();
     let timeout = false;
+    let playerOne = player(1, ships);
+    let playerTwo = player(2, ships);
+    addBoardEvents();
 
     function removePrevious() {
         let gameboard = document.getElementById('game');
@@ -22,7 +25,7 @@ function game(ships) {
             setTimeout(() => {
                 cpuHit();
                 timeout = false;
-            }, 500)
+            }, 500);
         }
     }
 
@@ -63,11 +66,6 @@ function game(ships) {
             }
         }
     }
-
-    let playerOne = player(1, ships);
-    let playerTwo = player(2, ships);
-    addBoardEvents();
-
 }
 
 export { game }

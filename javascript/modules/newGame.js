@@ -8,11 +8,12 @@ function newGame() {
     let shipSelectorDiv = document.getElementById('shipSelector');
     renderTitle('Place the ship on the board');
     let shipDiv = renderShipDiv();
-    let shipLength = 5;
-    let isVertical = true;
-    renderShip(shipLength);
+    let shipLength;
+    let isVertical;
+    nextShip();
     renderFooter('Click on the ship to rotate');
     addEvents();
+    let finishedPlacing = false;
 
     function renderTitle(text) {
         let title = document.createElement('div');
@@ -40,8 +41,23 @@ function newGame() {
         for (let i = 0; i < shipLength; i++) {
             let shipSquare = document.createElement('div');
             shipSquare.classList.add('square');
+            shipSquare.classList.add('ship');
             shipSquare.classList.add('ship-selector-ship');
             shipDiv.appendChild(shipSquare);
+        }
+    }
+
+    function removeShipRender() {
+        let count = shipDiv.childElementCount;
+        for (let i = 0; i < count; i++) {
+            shipDiv.lastChild.remove();
+        }
+    }
+
+    function clearShipSelector() {
+        let count = shipSelectorDiv.childElementCount;
+        for (let i = 0; i < count; i++) {
+            shipSelectorDiv.lastChild.remove();
         }
     }
 
@@ -65,7 +81,20 @@ function newGame() {
         }
     }
 
+    function nextShip() {
+        removeShipRender();
+        rotateShip();
+        if(ships.length === 0) {
+            renderStartGame();
+            return;
+        }
+        shipLength = ships[0];
+        ships.shift();
+        renderShip();
+    }
+
     function hoverShip(x, y) {
+        if(finishedPlacing) return;
         for (let i = 0; i < shipLength; i++) {
             let square;
             let shipClass = 'ship';
@@ -86,6 +115,7 @@ function newGame() {
     }
 
     function clearHoverShip(x, y) {
+        if(finishedPlacing) return;
         for (let i = 0; i < shipLength; i++) {
             let square;
             if (isVertical) {
@@ -123,10 +153,12 @@ function newGame() {
         })
 
         setOcupiedSquares(x, y);
+        nextShip();
 
     }
 
     function canBePlaced(x, y) {
+        if(finishedPlacing) return false;
         for (let i = 0; i < shipLength; i++) {
             if (isVertical) {
                 if (occupiedSquares[`${x}.${y + i}`] === true) {
@@ -180,6 +212,26 @@ function newGame() {
 
     function setOccupied(x, y) {
         occupiedSquares[`${x}.${y}`] = true;
+    }
+
+    function renderStartButton() {
+        let start = document.createElement('div');
+        start.classList.add('start-btn');
+        start.textContent = "Start";
+        start.addEventListener('click', () => startGame());
+        shipSelectorDiv.appendChild(start);
+    }
+
+    function renderStartGame() {
+        clearShipSelector();
+        renderTitle('All ships placed');
+        renderStartButton();
+        renderFooter('Ready to begin!');
+        finishedPlacing = true;
+    }
+
+    function startGame() {
+
     }
 
 }

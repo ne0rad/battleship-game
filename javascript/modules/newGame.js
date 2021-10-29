@@ -1,5 +1,6 @@
 import { renderNew } from "../DOM/renderNew.js";
 import { game } from "./startGame.js";
+import { randomShips } from "./randomShips.js";
 
 function newGame() {
     let occupiedSquares = {};
@@ -7,12 +8,12 @@ function newGame() {
     let shipQueue = [5, 4, 3, 3, 2];
     renderNew();
     let shipSelectorDiv = document.getElementById('shipSelector');
-    renderTitle('Place the ship on the board');
+    renderTitle('Place the ship on the board (click on the ship to rotate)');
     let shipDiv = renderShipDiv();
     let shipLength;
     let isVertical;
     nextShip();
-    renderFooter('Click on the ship to rotate');
+    renderRandomizeButton();
     addEvents();
     let finishedPlacing = false;
 
@@ -23,11 +24,12 @@ function newGame() {
         shipSelectorDiv.appendChild(title);
     }
 
-    function renderFooter(text) {
-        let footer = document.createElement('div');
-        footer.classList.add('text-title');
-        footer.textContent = text;
-        shipSelectorDiv.appendChild(footer);
+    function renderRandomizeButton() {
+        let randomize = document.createElement('div');
+        randomize.classList.add('randomize-btn');
+        randomize.textContent = 'Randomize';
+        randomize.addEventListener('click', () => randomizeShips());
+        shipSelectorDiv.appendChild(randomize);
     }
 
     function renderShipDiv() {
@@ -45,6 +47,32 @@ function newGame() {
             shipSquare.classList.add('ship');
             shipSquare.classList.add('ship-selector-ship');
             shipDiv.appendChild(shipSquare);
+        }
+    }
+
+    function renderRandomShip(x, y, length, vertical) {
+        for (let i = 0; i < length; i++) {
+            if (vertical) {
+                document.getElementById(`newBoard_${x}.${y + i}`)
+                    .classList.add('ship');
+            }
+            else {
+                document.getElementById(`newBoard_${x + i}.${y}`)
+                .classList.add('ship');
+            }
+        }
+    }
+
+    function renderClearRandomShip(x, y, length, vertical) {
+        for (let i = 0; i < length; i++) {
+            if (vertical) {
+                document.getElementById(`newBoard_${x}.${y + i}`)
+                    .classList.remove('ship');
+            }
+            else {
+                document.getElementById(`newBoard_${x + i}.${y}`)
+                .classList.remove('ship');
+            }
         }
     }
 
@@ -85,7 +113,7 @@ function newGame() {
     function nextShip() {
         removeShipRender();
         rotateShip();
-        if(shipQueue.length === 0) {
+        if (shipQueue.length === 0) {
             renderStartGame();
             return;
         }
@@ -95,7 +123,7 @@ function newGame() {
     }
 
     function hoverShip(x, y) {
-        if(finishedPlacing) return;
+        if (finishedPlacing) return;
         for (let i = 0; i < shipLength; i++) {
             let square;
             let shipClass = 'ship';
@@ -116,7 +144,7 @@ function newGame() {
     }
 
     function clearHoverShip(x, y) {
-        if(finishedPlacing) return;
+        if (finishedPlacing) return;
         for (let i = 0; i < shipLength; i++) {
             let square;
             if (isVertical) {
@@ -159,7 +187,7 @@ function newGame() {
     }
 
     function canBePlaced(x, y) {
-        if(finishedPlacing) return false;
+        if (finishedPlacing) return false;
         for (let i = 0; i < shipLength; i++) {
             if (isVertical) {
                 if (occupiedSquares[`${x}.${y + i}`] === true) {
@@ -223,11 +251,22 @@ function newGame() {
         shipSelectorDiv.appendChild(start);
     }
 
+    function randomizeShips() {
+        ships.forEach(ship => {
+            renderClearRandomShip(ship.x, ship.y, ship.shipLength, ship.isVertical);
+        });
+        ships = randomShips();
+        ships.forEach(ship => {
+            renderRandomShip(ship.x, ship.y, ship.shipLength, ship.isVertical);
+        });
+        renderStartGame();
+    }
+
     function renderStartGame() {
         clearShipSelector();
-        renderTitle('All ships placed');
+        renderTitle('Ready to begin!');
         renderStartButton();
-        renderFooter('Ready to begin!');
+        renderRandomizeButton();
         finishedPlacing = true;
     }
 

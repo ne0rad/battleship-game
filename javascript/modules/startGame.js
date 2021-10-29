@@ -1,10 +1,11 @@
 import { player } from '../factories/player.js';
+import { randomShips } from './randomShips.js';
 
 function game(ships) {
     removePrevious();
     let timeout = false;
     let playerOne = player(1, ships);
-    let playerTwo = player(2, ships);
+    let playerTwo = player(2, randomShips());
     addBoardEvents();
 
     function removePrevious() {

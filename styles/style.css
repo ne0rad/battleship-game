@@ -196,7 +196,7 @@ html,body {
   color: var(--text);
   padding: 15px 25px 15px 25px;
   box-shadow: 2px 2px 4px 0 black;
-  transition: all 0.2s;
+  transition: all 0.1s;
   text-shadow: 0 0 4px black;
 }
 
@@ -214,7 +214,7 @@ html,body {
   color: var(--text);
   padding: 5px 10px 5px 10px;
   box-shadow: 2px 2px 4px 0 black;
-  transition: all 0.2s;
+  transition: all 0.1s;
   text-shadow: 0 0 4px black;
 }
 

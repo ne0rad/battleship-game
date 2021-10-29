@@ -64,7 +64,6 @@ function randomShips() {
         } else {
             placeShip();
         }
-
     }
 
     function setOcupiedSquares(x, y) {

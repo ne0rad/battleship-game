@@ -93,9 +93,9 @@ html,body {
 
 .square {
   background-color: #afffff;
-  width: 37px;
-  height: 37px;
-  margin: 0;
+  width: 36px;
+  height: 36px;
+  margin: 1px;
   border-radius: 2px;
   box-shadow: 0 0 0 1px black;
 }
@@ -184,7 +184,7 @@ html,body {
 }
 
 .ship-selector-ship {
-  margin: 1.5px;
+  margin: 2px;
 }
 
 .start-btn {

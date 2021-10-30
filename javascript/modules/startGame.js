@@ -1,4 +1,5 @@
 import { player } from '../factories/player.js';
+import { cpuMove } from './cpuMove.js';
 import { randomShips } from './randomShips.js';
 
 function game(ships) {
@@ -31,13 +32,9 @@ function game(ships) {
     }
 
     function cpuHit() {
-        const availableLoc = [];
-        playerOne.getAvailableLoc().forEach(loc => {
-            let tempLoc = loc.split('.');
-            availableLoc.push([tempLoc[0], tempLoc[1]]);
-        });
-        let rand = Math.floor(Math.random() * availableLoc.length);
-        if (playerOne.hit(availableLoc[rand][0], availableLoc[rand][1])) {
+        let move = cpuMove(playerOne.getAvailableLoc());
+        
+        if (playerOne.hit(move.x, move.y)) {
             gameover();
         }
     }

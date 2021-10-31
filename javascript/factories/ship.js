@@ -22,10 +22,10 @@ function ship(playerID, x, y, length, isVertical) {
         health -= 1;
         if (health === 0) {
             destroy();
-            return false;
+            return -1;
         } else {
             renderShip.setHit(playerID, x, y);
-            return true;
+            return 1;
         }
     }
 

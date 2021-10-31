@@ -1,5 +1,3 @@
-import { renderShip } from "./renderShip.js";
-
 function renderBoard(playerID) {
 
     let game = document.getElementById('game');

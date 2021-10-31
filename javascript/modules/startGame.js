@@ -8,6 +8,7 @@ function game(ships) {
     let playerOne = player(1, ships);
     let playerTwo = player(2, randomShips());
     addBoardEvents();
+    const bestMoves = [];
 
     function removePrevious() {
         let gameboard = document.getElementById('game');
@@ -20,7 +21,7 @@ function game(ships) {
     function hit(x, y) {
         if (!checkHit(playerTwo, x, y) || timeout) return;
 
-        if (playerTwo.hit(x, y)) {
+        if (playerTwo.hit(x, y) === -1) {
             gameover();
         } else {
             timeout = true;
@@ -32,11 +33,28 @@ function game(ships) {
     }
 
     function cpuHit() {
-        let move = cpuMove(playerOne.getAvailableLoc());
-        
-        if (playerOne.hit(move.x, move.y)) {
+        let availableHits;
+        if (bestMoves.length <= 0) availableHits = playerOne.getAvailableLoc();
+        else availableHits = bestMoves;
+        let move = cpuMove(availableHits);
+        let isHit = playerOne.hit(move.x, move.y);
+        if (isHit === -1) {
             gameover();
+        } else if(isHit === 1) {
+            updateBestMoves(true, {x: move.x, y: move.y});
+        } else if(isHit === 0) {
+            updateBestMoves(false, {x: move.x, y: move.y});
         }
+    }
+
+    function updateBestMoves(isHit, move) {
+        // TODO
+        return
+    }
+
+    function clearBestMoves() {
+        // TODO
+        return
     }
 
     function checkHit(player, x, y) {

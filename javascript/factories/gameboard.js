@@ -4,7 +4,7 @@ import { renderShip } from "../DOM/renderShip.js";
 function gameboard(playerID, ships) {
     let coords = {};
     let shipCount = ships.length;
-    const availableLoc= [];
+    const availableLoc = [];
 
     setAvailableLoc();
     placeShips();
@@ -40,7 +40,7 @@ function gameboard(playerID, ships) {
 
     function removeAvailableLoc(x, y) {
         for (let i = 0; i < availableLoc.length; i++) {
-            if(availableLoc[i] === `${x}.${y}`) {
+            if (availableLoc[i] === `${x}.${y}`) {
                 availableLoc.splice(i, 1);
                 return;
             }
@@ -50,17 +50,20 @@ function gameboard(playerID, ships) {
     function hit(x, y) {
         removeAvailableLoc(x, y);
         let ship = coords[playerID + '_' + x + '.' + y];
-        if (!ship) renderShip.setMiss(playerID, x, y);
+        if (!ship) {
+            renderShip.setMiss(playerID, x, y);
+            return 0;
+        }
         else {
-            if (!ship.hit(x, y)) {
+            if (ship.hit(x, y) === -1) {
                 shipCount -= 1;
                 if (shipCount === 0) {
-                    return true;
+                    return -1;
                 }
             }
 
         }
-        return false;
+        return 1;
     }
 
     return { hit, getAvailableLoc }

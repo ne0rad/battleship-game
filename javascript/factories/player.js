@@ -8,10 +8,13 @@ function player(playerID, ships) {
 
     function hit(x, y) {
         if (clickable) {
-            if (board.hit(x, y)) {
-                return true;
+            let boardHit = board.hit(x, y);
+            if (boardHit === 1) {
+                return 1;
+            } else if (boardHit === -1) {
+                return -1;
             } else {
-                return false;
+                return 0;
             }
         }
     }

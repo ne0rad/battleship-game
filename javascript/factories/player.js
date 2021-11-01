@@ -13,8 +13,10 @@ function player(playerID, ships) {
                 return 1;
             } else if (boardHit === -1) {
                 return -1;
-            } else {
+            } else if(boardHit === 0) {
                 return 0;
+            } else {
+                return 2;
             }
         }
     }

@@ -44,6 +44,8 @@ function game(ships) {
             updateBestMoves(true, {x: move.x, y: move.y});
         } else if(isHit === 0) {
             updateBestMoves(false, {x: move.x, y: move.y});
+        } else if(isHit === 2) {
+            clearBestMoves();
         }
     }
 

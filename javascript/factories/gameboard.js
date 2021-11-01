@@ -52,18 +52,20 @@ function gameboard(playerID, ships) {
         let ship = coords[playerID + '_' + x + '.' + y];
         if (!ship) {
             renderShip.setMiss(playerID, x, y);
-            return 0;
+            return 0; // miss
         }
         else {
             if (ship.hit(x, y) === -1) {
                 shipCount -= 1;
                 if (shipCount === 0) {
-                    return -1;
+                    return -1; // game over
+                } else {
+                    return 2; // ship destroyed
                 }
             }
 
         }
-        return 1;
+        return 1; // hit
     }
 
     return { hit, getAvailableLoc }

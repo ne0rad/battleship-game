@@ -15,9 +15,7 @@ function renderRules() {
         '<br><br>' +
         'Playing the Game:' +
         '<br><br>' +
-        "Player's take turns guessing by calling out the coordinates. The opponent responds with \"hit\" or \"miss\" as appropriate.  Both players should mark their board with pegs:  red for hit, white for miss. For example, if you call out F6 and your opponent does not have any ship located at F6, your opponent would respond with \"miss\".  You record the miss F6 by placing a white peg on the lower part of your board at F6.  Your opponent records the miss by placing." +
-        '<br>' +
-        'When all of the squares that one your ships occupies have been hit, the ship will be sunk.   You should announce "hit and sunk".  In the physical game, a red peg is placed on the top edge of the vertical board to indicate a sunk ship.' +
+        "Player's take turns guessing by clicking on the coordinates. Game marks the board automatically, orange for hit, red for the destroyed ship." +
         '<br>' +
         "As soon as all of one player's ships have been sunk, the game ends." +
         '<br><br>';

@@ -60,6 +60,11 @@ function gameboard(playerID, ships) {
                 if (shipCount === 0) {
                     return -1; // game over
                 } else {
+                    if (playerID === 1) {
+                        ship.getSurroundingLoc().forEach(element => {
+                            removeAvailableLoc(element[0], element[1]);
+                        });
+                    }
                     return 2; // ship destroyed
                 }
             }

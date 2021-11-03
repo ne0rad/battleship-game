@@ -6,8 +6,8 @@ function cpuMove(availableSquares) {
     });
     let rand = Math.floor(Math.random() * availableLoc.length);
     return {
-        x: availableLoc[rand][0],
-        y: availableLoc[rand][1]
+        x: parseInt(availableLoc[rand][0]),
+        y: parseInt(availableLoc[rand][1])
     }
 }
 

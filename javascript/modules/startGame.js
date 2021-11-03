@@ -181,7 +181,7 @@ function game(ships) {
         if(player === 1) {
             changeDisplay('You WIN!');
         } else if(player === 2) {
-            changeDisplay('CPU WINS!');
+            setTimeout(() => changeDisplay('CPU WINS!'), 10);
         }
     }
 

@@ -1,6 +1,8 @@
+import { renderDisplay } from "./renderDisplay.js";
+
 function renderMenu() {
 
-    renderContentDiv();
+    let content = renderContentDiv();
 
     renderTitleDiv();
 
@@ -9,14 +11,15 @@ function renderMenu() {
     renderMenuItem('New Game');
     renderMenuItem('About');
 
+    renderDisplay();
     renderGameDiv();
-
     renderFooter();
 
     function renderContentDiv() {
         let content = document.createElement('div');
         content.id = 'content';
         document.getElementsByTagName('body')[0].appendChild(content);
+        return content;
     }
 
     function renderTitleDiv() {

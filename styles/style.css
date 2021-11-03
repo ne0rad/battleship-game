@@ -6,7 +6,8 @@
   --text: #ffffff;
 }
 
-html,body {
+html,
+body {
   font-family: "Black Ops One", cursive;
   margin: 0;
   padding: 0;
@@ -223,4 +224,22 @@ html,body {
 }
 .randomize-btn:active {
   box-shadow: 1px 1px 2px 0 black;
+}
+
+.display {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: var(--foreground);
+  width: 221px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 black;
+}
+
+.hidden {
+  display: none;
 }

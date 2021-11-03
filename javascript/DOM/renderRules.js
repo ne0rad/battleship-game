@@ -29,6 +29,7 @@ function renderRules() {
         for (let i = 0; i < count; i++) {
             game.lastChild.remove();
         }
+        document.getElementById('display').classList.add('hidden');
     }
 
     function renderRulesDiv() {

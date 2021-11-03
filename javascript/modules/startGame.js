@@ -1,6 +1,7 @@
 import { player } from '../factories/player.js';
 import { cpuMove } from './cpuMove.js';
 import { randomShips } from './randomShips.js';
+import { changeDisplay } from '../DOM/changeDisplay.js';
 
 function game(ships) {
     removePrevious();
@@ -19,24 +20,32 @@ function game(ships) {
         for (let i = 0; i < count; i++) {
             gameboard.lastChild.remove();
         }
+        document.getElementById('display').classList.remove('hidden');
+        changeDisplay('Your turn!');
     }
 
     function hit(x, y) {
         if (!checkHit(playerTwo, x, y) || timeout) return;
         let hit = playerTwo.hit(x, y);
         if (hit === -1) {
-            gameover();
-        } else if(hit === 0) {
+            gameover(1);
+        } else if (hit === 0) {
             cpuTimeout();
         }
     }
 
     function cpuTimeout() {
         timeout = true;
+        changeDisplay('CPU turn');
         setTimeout(() => {
             let hit = cpuHit();
-            if(!hit) timeout = false;
-            else cpuTimeout();
+            if (!hit) {
+                timeout = false;
+                changeDisplay('Your turn');
+            }
+            else {
+                cpuTimeout();
+            }
         }, 500);
     }
 
@@ -47,7 +56,7 @@ function game(ships) {
         let move = cpuMove(availableHits);
         let isHit = playerOne.hit(move.x, move.y);
         if (isHit === -1) {
-            gameover();
+            gameover(2);
             return false;
         } else if (isHit === 1) {
             updateBestDirection(true, move);
@@ -69,23 +78,27 @@ function game(ships) {
             if (bestDirection && isHit) {
                 bestMoves = [];
                 if (bestDirection === 'right') {
-                    if(!addBestMove(move.x + 1, move.y)) {
+                    if (!addBestMove(move.x + 1, move.y)) {
                         addBestMove(bestFirstHit.x - 1, bestFirstHit.y);
+                        bestDirection = 'left';
                     }
                 }
                 else if (bestDirection === 'left') {
-                    if(!addBestMove(move.x - 1, move.y)) {
+                    if (!addBestMove(move.x - 1, move.y)) {
                         addBestMove(bestFirstHit.x + 1, bestFirstHit.y);
+                        bestDirection = 'right';
                     }
                 }
                 else if (bestDirection === 'down') {
-                    if(!addBestMove(move.x, move.y + 1)) {
+                    if (!addBestMove(move.x, move.y + 1)) {
                         addBestMove(bestFirstHit.x, bestFirstHit.y - 1);
+                        bestDirection = 'up';
                     }
                 }
                 else if (bestDirection === 'up') {
-                    if(!addBestMove(move.x, move.y - 1)) {
+                    if (!addBestMove(move.x, move.y - 1)) {
                         addBestMove(bestFirstHit.x, bestFirstHit.y + 1);
+                        bestDirection = 'down';
                     }
                 }
             } else if (bestDirection && !isHit) {
@@ -155,7 +168,7 @@ function game(ships) {
         else return true;
     }
 
-    function gameover() {
+    function gameover(player) {
         for (let i = 1; i <= 10; i++) {
             for (let j = 1; j <= 10; j++) {
                 let square = document.getElementById(`2_${j}.${i}`);
@@ -164,6 +177,12 @@ function game(ships) {
         }
         playerOne.toggleClickable();
         playerTwo.toggleClickable();
+
+        if(player === 1) {
+            changeDisplay('You WIN!');
+        } else if(player === 2) {
+            changeDisplay('CPU WINS!');
+        }
     }
 
     function addBoardEvents() {

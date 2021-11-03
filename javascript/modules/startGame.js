@@ -8,7 +8,10 @@ function game(ships) {
     let playerOne = player(1, ships);
     let playerTwo = player(2, randomShips());
     addBoardEvents();
-    const bestMoves = [];
+    let bestMoves = [];
+    let bestFirstHit = false;
+    let bestDirection = false;
+    let bestLastMove = false;
 
     function removePrevious() {
         let gameboard = document.getElementById('game');
@@ -20,43 +23,131 @@ function game(ships) {
 
     function hit(x, y) {
         if (!checkHit(playerTwo, x, y) || timeout) return;
-
-        if (playerTwo.hit(x, y) === -1) {
+        let hit = playerTwo.hit(x, y);
+        if (hit === -1) {
             gameover();
-        } else {
-            timeout = true;
-            setTimeout(() => {
-                cpuHit();
-                timeout = false;
-            }, 500);
+        } else if(hit === 0) {
+            cpuTimeout();
         }
+    }
+
+    function cpuTimeout() {
+        timeout = true;
+        setTimeout(() => {
+            let hit = cpuHit();
+            if(!hit) timeout = false;
+            else cpuTimeout();
+        }, 500);
     }
 
     function cpuHit() {
         let availableHits;
-        if (bestMoves.length <= 0) availableHits = playerOne.getAvailableLoc();
+        if (bestMoves.length < 1) availableHits = playerOne.getAvailableLoc();
         else availableHits = bestMoves;
         let move = cpuMove(availableHits);
         let isHit = playerOne.hit(move.x, move.y);
         if (isHit === -1) {
             gameover();
-        } else if(isHit === 1) {
-            updateBestMoves(true, {x: move.x, y: move.y});
-        } else if(isHit === 0) {
-            updateBestMoves(false, {x: move.x, y: move.y});
-        } else if(isHit === 2) {
+            return false;
+        } else if (isHit === 1) {
+            updateBestDirection(true, move);
+            bestLastMove = move;
+            updateBestMoves(true, move);
+            return true;
+        } else if (isHit === 0) {
+            updateBestMoves(false, move);
+            return false;
+        } else if (isHit === 2) {
             clearBestMoves();
+            return true;
         }
     }
 
     function updateBestMoves(isHit, move) {
-        // TODO
-        return
+        if (bestFirstHit) {
+            bestMoves.splice(bestMoves.indexOf(`${move.x}.${move.y}`), 1);
+            if (bestDirection && isHit) {
+                bestMoves = [];
+                if (bestDirection === 'right') {
+                    if(!addBestMove(move.x + 1, move.y)) {
+                        addBestMove(bestFirstHit.x - 1, bestFirstHit.y);
+                    }
+                }
+                else if (bestDirection === 'left') {
+                    if(!addBestMove(move.x - 1, move.y)) {
+                        addBestMove(bestFirstHit.x + 1, bestFirstHit.y);
+                    }
+                }
+                else if (bestDirection === 'down') {
+                    if(!addBestMove(move.x, move.y + 1)) {
+                        addBestMove(bestFirstHit.x, bestFirstHit.y - 1);
+                    }
+                }
+                else if (bestDirection === 'up') {
+                    if(!addBestMove(move.x, move.y - 1)) {
+                        addBestMove(bestFirstHit.x, bestFirstHit.y + 1);
+                    }
+                }
+            } else if (bestDirection && !isHit) {
+                bestMoves = [];
+                if (bestDirection === 'right') {
+                    addBestMove(bestFirstHit.x - 1, bestFirstHit.y);
+                    bestDirection = 'left';
+                }
+                else if (bestDirection === 'left') {
+                    addBestMove(bestFirstHit.x + 1, bestFirstHit.y);
+                    bestDirection = 'right';
+                }
+                else if (bestDirection === 'up') {
+                    addBestMove(bestFirstHit.x, bestFirstHit.y + 1);
+                    bestDirection = 'down';
+                }
+                else if (bestDirection === 'down') {
+                    addBestMove(bestFirstHit.x, bestFirstHit.y - 1);
+                    bestDirection = 'up';
+                }
+            }
+        } else if (isHit) {
+            bestFirstHit = move;
+            if (move.x < 10) {
+                addBestMove(move.x + 1, move.y);
+            }
+            if (move.x > 1) {
+                addBestMove(move.x - 1, move.y)
+            }
+            if (move.y < 10) {
+                addBestMove(move.x, move.y + 1);
+            }
+            if (move.y > 1) {
+                addBestMove(move.x, move.y - 1);
+            }
+        }
+        return;
+    }
+
+    function addBestMove(x, y) {
+        if (checkHit(playerOne, x, y)) {
+            bestMoves.push(`${x}.${y}`);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updateBestDirection(isHit, move) {
+        if (!bestLastMove || !isHit) return;
+        if (bestLastMove.x + 1 === move.x) bestDirection = 'right';
+        else if (bestLastMove.x - 1 === move.x) bestDirection = 'left';
+        else if (bestLastMove.y - 1 === move.y) bestDirection = 'up';
+        else if (bestLastMove.y + 1 === move.y) bestDirection = 'down';
     }
 
     function clearBestMoves() {
-        // TODO
-        return
+        bestMoves = [];
+        bestDirection = false;
+        bestFirstHit = false;
+        bestLastMove = false;
+        return;
     }
 
     function checkHit(player, x, y) {
